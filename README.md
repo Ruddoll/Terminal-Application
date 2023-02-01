@@ -2,9 +2,10 @@
 
 Directory Manager is a Python script that provides several functionalities to manage directories in a computer system. It is an easy-to-use program that allows you to display the contents of a directory, create new directories, delete existing directories, search for a specific directory, move a directory to a different location and rename a directory.
 
-## **Repository**
+## **Repository and Video links**
 
 [GitHub link](https://github.com/Ruddoll/Terminal-Application)
+[Youtube Video](https://youtu.be/8oa_Yr0gfvA)
 
 
 ## **Features**

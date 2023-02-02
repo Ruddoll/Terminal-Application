@@ -1,12 +1,6 @@
 import os
 import sys
 
-try:
-    import termcolor
-except ImportError:
-    os.system("pip install termcolor")
-    import termcolor
-
 def display_files(directory):
     try:
         return os.listdir(directory)

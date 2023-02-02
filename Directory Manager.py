@@ -4,15 +4,15 @@ import shutil
 
 def display_files(directory):
     if not os.path.exists(directory):
-        return f"Directory '{directory}' does not exist"
+        return f"\033[93mDirectory '{directory}' does not exist\033[93m"
     try:
         return os.listdir(directory)
     except Exception as e:
-        return f"An error occurred while accessing the directory: {e}"
+        return f"\033[91mAn error occurred while accessing the directory: {e}\033[91m"
 
 def make_directory(name, path=None):
     if not name or any(char in name for char in "\\/:*?\"<>|"):
-        return "Invalid directory name. Please enter a valid name without any of the following characters: \\ / : * ? \" < > |"
+        return "\033[93mInvalid directory name. Please enter a valid name without any of the following characters: \\ / : * ? \" < > |\033[93m"
     
     if path:
         directory = os.path.join(path, name)
@@ -20,34 +20,34 @@ def make_directory(name, path=None):
         directory = name
     try:
         os.mkdir(directory)
-        return f"Directory '{directory}' created successfully"
+        return f"\033[32mDirectory '{directory}' created successfully\033[0m"
     except Exception as e:
-        return f"An error occurred while creating the directory '{directory}': {e}"
+        return f"\033[91mAn error occurred while creating the directory '{directory}': {e}\033[91m"
 
 def delete_directory(directory):
     if not os.path.exists(directory):
-        return f"Directory '{directory}' does not exist"
+        return f"\033[93mDirectory '{directory}' does not exist\033[93m"
     try:
         shutil.rmtree(directory)
-        return f"Directory '{directory}' deleted successfully"
+        return f"\033[32mDirectory '{directory}' deleted successfully\033[32m"
     except Exception as e:
-        return f"An error occurred while deleting the directory '{directory}': {e}"
+        return f"\033[91mAn error occurred while deleting the directory '{directory}': {e}\033[91m"
 
 def rename_directory(old_name, new_name):
     if not os.path.exists(old_name):
-        return f"Directory '{old_name}' does not exist"
+        return f"\033[93mDirectory '{old_name}' does not exist\033[93m"
     if not new_name or any(char in new_name for char in "\\/:*?\"<>|"):
-        return "Invalid new directory name. Please enter a valid name without any of the following characters: \\ / : * ? \" < > |"
+        return "\033[93mInvalid new directory name. Please enter a valid name without any of the following characters: \\ / : * ? \" < > |\033[93m"
     
     try:
         os.rename(old_name, new_name)
-        return f"Directory '{old_name}' renamed to '{new_name}' successfully"
+        return f"\033[32mDirectory '{old_name}' renamed to '{new_name}' successfully\033[32m"
     except Exception as e:
-        return f"An error occurred while renaming the directory '{old_name}': {e}"
+        return f"\033[91mAn error occurred while renaming the directory '{old_name}': {e}\033[91m"
 
 def search_directories(name, path):
     if not os.path.exists(path):
-        return f"Path '{path}' does not exist"
+        return f"\033[93mPath '{path}' does not exist\033[93m"
     
     directories = []
     for root, dirs, files in os.walk(path):
@@ -55,27 +55,28 @@ def search_directories(name, path):
             if dir == name:
                 directories.append(os.path.join(root, dir))
     if directories:
-        return f"Found directories: {directories}"
+        return f"\033[32mFound directories: {directories}\033[32m"
     else:
-        return f"No directories named '{name}' found in '{path}'"
+        return f"\033[93mNo directories named '{name}' found in '{path}'\033[93m"
 
 def move_directory(src, dst):
     try:
         shutil.move(src, dst)
-        return f"Directory '{src}' moved to '{dst}' successfully"
+        return f"\033[32mDirectory '{src}' moved to '{dst}' successfully\033[32m"
     except Exception as e:
-        return f"An error occurred while moving the directory '{src}': {e}"
+        return f"\033[91mAn error occurred while moving the directory '{src}': {e}\033[91m"
 
 def main_menu():
-    print("Directory Manager")
-    print("========================")
-    print("1. Display files in a directory")
-    print("2. Make a directory")
-    print("3. Delete a directory")
-    print("4. Rename a directory")
-    print("5. Search for a directory")
-    print("6. Move a directory")
-    print("7. Quit")
+    print("\033[95m========================\033[95m")
+    print("\033[0;36m   Directory Manager\033[0;36m")
+    print("\033[95m========================\033[95m")
+    print("\033[34m1. Display files in a directory\033[0m")
+    print("\033[34m2. Make a directory\033[0m")
+    print("\033[34m3. Delete a directory\033[0m")
+    print("\033[34m4. Rename a directory\033[0m")
+    print("\033[34m5. Search for a directory\033[0m")
+    print("\033[34m6. Move a directory\033[0m")
+    print("\033[34m7. Quit\033[0m")
 
 def handle_choice(choice):
     if choice == '1':

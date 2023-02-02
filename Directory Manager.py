@@ -5,8 +5,8 @@ import shutil
 def display_files(directory):
     try:
         return os.listdir(directory)
-    except:
-        return "An error occurred while accessing the directory"
+    except Exception as e:
+        return f"An error occurred while accessing the directory: {e}"
 
 def make_directory(name, path=None):
     if path:
@@ -15,23 +15,23 @@ def make_directory(name, path=None):
         directory = name
     try:
         os.mkdir(directory)
-        return "Directory created successfully"
-    except:
-        return "An error occurred while creating the directory"
+        return f"Directory '{directory}' created successfully"
+    except Exception as e:
+        return f"An error occurred while creating the directory '{directory}': {e}"
 
 def delete_directory(directory):
     try:
-        os.rmdir(directory)
-        return "Directory deleted successfully"
-    except:
-        return "An error occurred while deleting the directory"
+        shutil.rmtree(directory)
+        return f"Directory '{directory}' deleted successfully"
+    except Exception as e:
+        return f"An error occurred while deleting the directory '{directory}': {e}"
 
 def rename_directory(old_name, new_name):
     try:
         os.rename(old_name, new_name)
-        return "Directory renamed successfully"
-    except:
-        return "An error occurred while renaming the directory"
+        return f"Directory '{old_name}' renamed to '{new_name}' successfully"
+    except Exception as e:
+        return f"An error occurred while renaming the directory '{old_name}': {e}"
 
 def search_directories(name, path):
     directories = []
@@ -39,14 +39,17 @@ def search_directories(name, path):
         for dir in dirs:
             if dir == name:
                 directories.append(os.path.join(root, dir))
-    return directories
+    if directories:
+        return f"Found directories: {directories}"
+    else:
+        return f"No directories named '{name}' found in '{path}'"
 
 def move_directory(src, dst):
     try:
-        os.rename(src, dst)
-        return "Directory moved successfully"
-    except:
-        return "An error occurred while moving the directory"
+        shutil.move(src, dst)
+        return f"Directory '{src}' moved to '{dst}' successfully"
+    except Exception as e:
+        return f"An error occurred while moving the directory '{src}': {e}"
 
 def main_menu():
     print("Directory Manager")

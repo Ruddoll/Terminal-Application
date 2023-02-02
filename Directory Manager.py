@@ -1,5 +1,6 @@
 import os
 import sys
+import shutil
 
 def display_files(directory):
     try:
@@ -25,6 +26,13 @@ def delete_directory(directory):
     except:
         return "An error occurred while deleting the directory"
 
+def move_directory(src, dst):
+    try:
+        shutil.move(src, dst)
+        return "Directory moved successfully"
+    except:
+        return "An error occurred while moving the directory"
+
 def search_directories(name, path):
     directories = []
     for root, dirs, files in os.walk(path):
@@ -39,8 +47,9 @@ def main_menu():
     print("1. Display files in a directory")
     print("2. Make a directory")
     print("3. Delete a directory")
-    print("4. Search for a directory")
-    print("5. Quit")
+    print("4. Move a directory")
+    print("5. Search for a directory")
+    print("6. Quit")
 
 def handle_choice(choice):
     if choice == '1':
@@ -54,6 +63,10 @@ def handle_choice(choice):
         directory = input("Enter the name of the directory: ")
         print(delete_directory(directory))
     elif choice == '4':
+        src = input("Enter the source path of the directory: ")
+        dst = input("Enter the destination path for the directory: ")
+        print(move_directory(src, dst))
+    elif choice == '5':
         name = input("Enter the name of the directory: ")
         path = input("Enter the starting path for the search: ")
         directories = search_directories(name, path)
@@ -63,7 +76,7 @@ def handle_choice(choice):
                 print(directory)
         else:
             print("No directories found.")
-    elif choice == '5':
+    elif choice == '6':
         print("Exiting the program")
         sys.exit()
     else:
@@ -74,5 +87,3 @@ if __name__ == '__main__':
         main_menu()
         choice = input("Enter your choice: ")
         handle_choice(choice)
-
-

@@ -3,6 +3,8 @@ import sys
 import shutil
 
 def display_files(directory):
+    if not os.path.exists(directory):
+        return f"Directory '{directory}' does not exist"
     try:
         return os.listdir(directory)
     except Exception as e:

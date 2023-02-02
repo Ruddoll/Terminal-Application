@@ -1,9 +1,7 @@
 import os
 import sys
 
-import colorama
-
-colorama.init()
+from termcolor import colored
 
 def display_files(directory):
     try:

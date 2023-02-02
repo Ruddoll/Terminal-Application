@@ -17,31 +17,31 @@ The display_files function allows users to see a list of files in a directory. T
 
 
 
-1. Make a directory
+2. Make a directory
 
 The make_directory function enables users to make a new directory. The function takes two arguments: name (the name of the directory) to be created and path (the path of the directory). If the path argument is not provided, the directory will be created in the current working directory. The function creates the directory using the os.mkdir method.
 
 
 
-1. Delete a directory
+3. Delete a directory
 
 The delete_directory function allows users to delete a directory. The function takes the directory path as an argument and deletes the directory using the os.rmdir method.
 
 
 
-1. Search for a directory
+4. Search for a directory
 
 The search_directories function allows users to search for a directory in the file system. The function takes two arguments: name which is the name of the directory to be searched for, and path which is the starting path for the search. The function uses the os.walk method to perform a recursive search and returns a list of directories that match the search criteria.
 
 
 
-1. Move directory location
+5. Move directory location
 
 The move_directory function enables users to move a directory to a new location. The function takes two arguments: src which is the source path of the directory, and dst which is the destination path. The function uses the shutil.move method to move the directory to the new location.
 
 
 
-1. Rename directory
+6. Rename directory
 
 The rename_directory function allows users to rename a directory. The function takes two arguments: src which is the source path of the directory, and dst which is the new name for the directory. The function uses the os.rename method to rename the directory.
 

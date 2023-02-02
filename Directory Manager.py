@@ -6,7 +6,11 @@ def display_files(directory):
     except:
         return "An error occurred while accessing the directory"
 
-def make_directory(directory):
+def make_directory(name, path=None):
+    if path:
+        directory = os.path.join(path, name)
+    else:
+        directory = name
     try:
         os.mkdir(directory)
         return "Directory created successfully"
@@ -33,8 +37,9 @@ def handle_choice(choice):
         directory = input("Enter the path of the directory: ")
         print(display_files(directory))
     elif choice == '2':
-        directory = input("Enter the name of the directory: ")
-        print(make_directory(directory))
+        name = input("Enter the name of the directory: ")
+        path = input("Enter the path of the directory (optional): ")
+        print(make_directory(name, path))
     elif choice == '3':
         directory = input("Enter the name of the directory: ")
         print(delete_directory(directory))

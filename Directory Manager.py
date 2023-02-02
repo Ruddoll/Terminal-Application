@@ -12,7 +12,7 @@ def display_files(directory):
 
 def make_directory(name, path=None):
     if not name or any(char in name for char in "\\/:*?\"<>|"):
-        return "Invalid directory name. Please enter a valid name without any of the following characters: \ / : * ? \" < > |"
+        return "Invalid directory name. Please enter a valid name without any of the following characters: \\ / : * ? \" < > |"
     
     if path:
         directory = os.path.join(path, name)
@@ -37,7 +37,7 @@ def rename_directory(old_name, new_name):
     if not os.path.exists(old_name):
         return f"Directory '{old_name}' does not exist"
     if not new_name or any(char in new_name for char in "\\/:*?\"<>|"):
-        return "Invalid new directory name. Please enter a valid name without any of the following characters: \ / : * ? \" < > |"
+        return "Invalid new directory name. Please enter a valid name without any of the following characters: \\ / : * ? \" < > |"
     
     try:
         os.rename(old_name, new_name)

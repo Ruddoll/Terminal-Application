@@ -24,13 +24,22 @@ def delete_directory(directory):
     except:
         return "An error occurred while deleting the directory"
 
+def search_directories(name, path):
+    directories = []
+    for root, dirs, files in os.walk(path):
+        for dir in dirs:
+            if dir == name:
+                directories.append(os.path.join(root, dir))
+    return directories
+
 def main_menu():
     print("Directory Manager")
     print("========================")
     print("1. Display files in a directory")
     print("2. Make a directory")
     print("3. Delete a directory")
-    print("4. Quit")
+    print("4. Search for a directory")
+    print("5. Quit")
 
 def handle_choice(choice):
     if choice == '1':
@@ -44,6 +53,16 @@ def handle_choice(choice):
         directory = input("Enter the name of the directory: ")
         print(delete_directory(directory))
     elif choice == '4':
+        name = input("Enter the name of the directory: ")
+        path = input("Enter the starting path for the search: ")
+        directories = search_directories(name, path)
+        if directories:
+            print("Found directories:")
+            for directory in directories:
+                print(directory)
+        else:
+            print("No directories found.")
+    elif choice == '5':
         print("Exiting the program")
         sys.exit()
     else:

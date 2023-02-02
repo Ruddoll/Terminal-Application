@@ -1,7 +1,11 @@
 import os
 import sys
 
-from termcolor import colored
+try:
+    import termcolor
+except ImportError:
+    os.system("pip install termcolor")
+    import termcolor
 
 def display_files(directory):
     try:

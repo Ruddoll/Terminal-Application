@@ -9,6 +9,9 @@ def display_files(directory):
         return f"An error occurred while accessing the directory: {e}"
 
 def make_directory(name, path=None):
+    if not name or any(char in name for char in "\\/:*?\"<>|"):
+        return "Invalid directory name. Please enter a valid name without any of the following characters: \ / : * ? \" < > |"
+    
     if path:
         directory = os.path.join(path, name)
     else:
@@ -20,6 +23,8 @@ def make_directory(name, path=None):
         return f"An error occurred while creating the directory '{directory}': {e}"
 
 def delete_directory(directory):
+    if not os.path.exists(directory):
+        return f"Directory '{directory}' does not exist"
     try:
         shutil.rmtree(directory)
         return f"Directory '{directory}' deleted successfully"
@@ -27,6 +32,11 @@ def delete_directory(directory):
         return f"An error occurred while deleting the directory '{directory}': {e}"
 
 def rename_directory(old_name, new_name):
+    if not os.path.exists(old_name):
+        return f"Directory '{old_name}' does not exist"
+    if not new_name or any(char in new_name for char in "\\/:*?\"<>|"):
+        return "Invalid new directory name. Please enter a valid name without any of the following characters: \ / : * ? \" < > |"
+    
     try:
         os.rename(old_name, new_name)
         return f"Directory '{old_name}' renamed to '{new_name}' successfully"
@@ -34,6 +44,9 @@ def rename_directory(old_name, new_name):
         return f"An error occurred while renaming the directory '{old_name}': {e}"
 
 def search_directories(name, path):
+    if not os.path.exists(path):
+        return f"Path '{path}' does not exist"
+    
     directories = []
     for root, dirs, files in os.walk(path):
         for dir in dirs:

@@ -40,6 +40,13 @@ def search_directories(name, path):
                 directories.append(os.path.join(root, dir))
     return directories
 
+def move_directory(src, dst):
+    try:
+        os.rename(src, dst)
+        return "Directory moved successfully"
+    except:
+        return "An error occurred while moving the directory"
+
 def main_menu():
     print("Directory Manager")
     print("========================")
@@ -48,7 +55,8 @@ def main_menu():
     print("3. Delete a directory")
     print("4. Rename a directory")
     print("5. Search for a directory")
-    print("6. Quit")
+    print("6. Move a directory")
+    print("7. Quit")
 
 def handle_choice(choice):
     if choice == '1':
@@ -76,6 +84,10 @@ def handle_choice(choice):
         else:
             print("No directories found.")
     elif choice == '6':
+        src = input("Enter the source path of the directory: ")
+        dst = input("Enter the destination path of the directory: ")
+        print(move_directory(src, dst))
+    elif choice == '7':
         print("Exiting the program")
         sys.exit()
     else:

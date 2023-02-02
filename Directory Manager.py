@@ -7,16 +7,16 @@ def display_files(directory):
         for file in files:
             print(file)
     except:
-        print("An error occured while accessing the directory")
+        print("An error occurred while accessing the directory")
         sys.exit()
 
-def main():
+def main_menu():
     print("Directory Manager")
     print("========================")
     print("1. Display files in a directory")
     print("2. Quit")
 
-    choice = input("Enter your choice (1 or 2): ")
+def handle_choice(choice):
     if choice == '1':
         directory = input("Enter the directory path: ")
         display_files(directory)
@@ -24,6 +24,11 @@ def main():
         sys.exit()
     else:
         print("Invalid choice. Try again.")
+
+def main():
+    main_menu()
+    choice = input("Enter your choice (1 or 2): ")
+    handle_choice(choice)
 
 if __name__ == '__main__':
     main()

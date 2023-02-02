@@ -111,7 +111,7 @@ def handle_choice(choice):
         print("Exiting the program")
         sys.exit()
     else:
-        print("Invalid choice. Try again.")
+        print("\033[93mInvalid choice. Try again.\033[93m")
 
 if __name__ == '__main__':
     while True:
